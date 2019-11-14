@@ -4,13 +4,14 @@ public class Professor {
 	
 	private String nome;
 	private int matricula;
+	private String senha;
 	
 	//Construtor
 	public Professor(String nome, int matricula){
 		super();
 	}
 
-	//Get´s & Set´s
+	//GetÂ´s & SetÂ´s
 	public String getNome() {
 		return nome;
 	}
@@ -25,5 +26,13 @@ public class Professor {
 
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
-	}	
+	}
+	
+	public String getSenha(){
+		return senha;
+	}
+	
+	public void setSenha(String Senha){
+		this.senha = senha;
+	}
 }
