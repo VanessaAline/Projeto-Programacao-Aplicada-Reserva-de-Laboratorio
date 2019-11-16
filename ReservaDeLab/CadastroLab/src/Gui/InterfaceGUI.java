@@ -1,6 +1,7 @@
 package Gui;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,24 +18,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
 
-public class TelaInicial {
+public class InterfaceGUI {
 	//variaveis
-	JFrame tela = new JFrame("Reserva de Laboratórios");
+	JFrame tela = new JFrame("Reserva de LaboratÃ³rios");
 	JPanel panel, panelCadastro;
 	ImageIcon icon = new ImageIcon(getClass().getResource("untitled.png"));
-	JLabel Imagemfundo, lbNomeMatricula, lbAcesso, lbCadastro;
+	JLabel Imagemfundo, lbNomeMatricula, lbAcesso, lbCadastro, lbInsta;
 	JLabel lbLogo = new JLabel(icon);
 	JTextField textMatricula;
 	JPasswordField textSenha; //para pegar o texto do password usa getPassword()
 	JButton btnEntrar, btnCadastrar, btnVoltar;
 
 	//construtor
-	public TelaInicial() {}
+	public InterfaceGUI() {}
 	
 	//metodo inicializa
 	public void inicializa() {
-		//Configurações da Tela
+		//ConfiguraÃ§Ãµes da Tela
 		tela.setSize(1000,700);
 		tela.setVisible(true);
 		tela.setLayout(null);
@@ -55,12 +58,30 @@ public class TelaInicial {
 		Imagemfundo.setBackground(Color.BLACK);
 		Imagemfundo.setBounds(0,0,650,700);
 		
-		//logo da faculdade
+		//logos
 		panel.add(lbLogo);
 		icon.setImage(icon.getImage().getScaledInstance(250,200,100));
 		lbLogo.setBounds(680,60,240,100);
+		ImageIcon iconInsta = new ImageIcon(getClass().getResource("insta.png"));
+		iconInsta.setImage(iconInsta.getImage().getScaledInstance(25,25,100));
+		lbInsta = new JLabel(iconInsta);
+		panel.add(lbInsta);
+		lbInsta.setBounds(700,580,25,25);
 		
-		lbNomeMatricula = new JLabel("Informe sua Matrícula");
+		//clicar no icone do insta ira abrir a pagina do insta
+		lbInsta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://www.instagram.com/uninabuco/"));
+				}catch(Exception erro) {
+					
+				}
+			}
+			
+		});
+		
+		lbNomeMatricula = new JLabel("Informe sua MatrÃ­cula");
 		panel.add(lbNomeMatricula);
 		lbNomeMatricula.setBounds(700,250,160,30);
 		lbNomeMatricula.setFont(new Font("Verdana", 0, 14));
@@ -69,7 +90,7 @@ public class TelaInicial {
 		textMatricula = new JTextField(); textSenha = new JPasswordField();
 		panel.add(textMatricula); panel.add(textSenha);
 		textMatricula.setBounds(700,300,200,30);
-		textMatricula.setText("Matrícula");
+		textMatricula.setText("MatrÃ­cula");
 		textMatricula.setFont(new Font("Verdana",0, 14));
 		textSenha.setBounds(700,340,200,30);
 		textSenha.setText("Senha");
@@ -79,7 +100,7 @@ public class TelaInicial {
 		textMatricula.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(textMatricula.getText().equals("Matrícula")){
+				if(textMatricula.getText().equals("MatrÃ­cula")){
 					textMatricula.setText("");
 				}
 			}
@@ -87,7 +108,7 @@ public class TelaInicial {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(textMatricula.getText().equals("")) {
-					textMatricula.setText("Matrícula");
+					textMatricula.setText("MatrÃ­cula");
 				}
 			}
 		});
@@ -119,8 +140,15 @@ public class TelaInicial {
 		btnEntrar.setFont(new Font("Verdana",0,14));
 		btnEntrar.setBounds(700,400,100,30);
 		
+		btnEntrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//code do botao entrar
+			}
+		});
+		
 		//cadastrar
-		lbAcesso = new JLabel("Não tem acesso?");
+		lbAcesso = new JLabel("NÃ£o tem acesso?");
 		panel.add(lbAcesso);
 		lbAcesso.setBounds(700,500,120,30);
 		lbAcesso.setFont(new Font("Verdana", 0, 14));
@@ -133,8 +161,8 @@ public class TelaInicial {
 	}
 	
 	//variaveis para cadastro
-	JLabel lbNome, lbMatricula, lbSenha, lbTextoCadastro;
-	JTextField textNome, textNewMatricula, texNewtSenha;
+	JLabel lbNome, lbMatricula, lbSenha, lbTextoCadastro, lbBorda;
+	JTextField textNome, textNewMatricula, textNewSenha;
 	
 	//funcao para cadastrar um professor
 	public void novoCadastro(JLabel label) {
@@ -149,11 +177,18 @@ public class TelaInicial {
 				panelCadastro.setLayout(null);
 				panelCadastro.setBackground(Color.WHITE);
 				
-				lbTextoCadastro = new JLabel("CADASTRO DE PROFESSOR");
+				lbTextoCadastro = new JLabel(" CADASTRO DE PROFESSOR");
 				panelCadastro.add(lbTextoCadastro);
+				lbTextoCadastro.setBackground(Color.WHITE);
+				lbTextoCadastro.setOpaque(true);
 				lbTextoCadastro.setBounds(100,100,350,30);
 				lbTextoCadastro.setFont(new Font("Verdana",1,22));
 				panelCadastro.add(lbLogo);
+				
+				lbBorda = new JLabel();
+				panelCadastro.add(lbBorda);
+				lbBorda.setBorder(new MatteBorder(1, 1, 1, 1, new Color(169,169,169)));
+				lbBorda.setBounds(75,115,550,470);
 				
 				btnCadastrar = new JButton(); btnVoltar = new JButton();
 				panelCadastro.add(btnCadastrar);
@@ -180,7 +215,7 @@ public class TelaInicial {
 				textNome.setBackground(new Color(248,248,255));
 				textNome.setBounds(100,230,500,30);
 				
-				lbMatricula = new JLabel("Informe a sua Matrícula");
+				lbMatricula = new JLabel("Informe a sua MatrÃ­cula");
 				panelCadastro.add(lbMatricula);
 				lbMatricula.setFont(new Font("Verdana",0,14));
 				lbMatricula.setBounds(100,270,170,30);
@@ -192,6 +227,16 @@ public class TelaInicial {
 				textNewMatricula.setBounds(100,300,500,30);
 				
 				//falta definir como vai ser a senha, aleatoria ou escolhida
+				lbSenha = new JLabel("Informe sua Senha");
+				panelCadastro.add(lbSenha);
+				lbSenha.setFont(new Font("Verdana",0,14));
+				lbSenha.setBounds(100,340,160,30);
+				
+				textNewSenha = new JTextField();
+				panelCadastro.add(textNewSenha);
+				textNewSenha.setFont(new Font("Verdana",0,14));
+				textNewSenha.setBackground(new Color(248,248,255));
+				textNewSenha.setBounds(100,370,500,30);
 				
 				//acao do bota cadastrar
 				btnCadastrar.addActionListener(new ActionListener() {
@@ -212,13 +257,12 @@ public class TelaInicial {
 					}
 				});
 			}
-			
 		});
 	}
 	
 	//main
 	public static void main(String[] args) {
-		TelaInicial teste = new TelaInicial();
+		InterfaceGUI teste = new InterfaceGUI();
 		teste.inicializa();
 	}
 }
