@@ -3,6 +3,7 @@ package Gui;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 public class InterfaceGUI {
@@ -29,6 +31,7 @@ public class InterfaceGUI {
 	JPanel panel, panelCadastro, panelAcesso;
 	ImageIcon icon = new ImageIcon(getClass().getResource("untitled.png"));
 	ImageIcon icon2 = new ImageIcon(getClass().getResource("Untitled.png"));
+	ImageIcon icon3 = new ImageIcon(getClass().getResource("nabuco.jpg"));
 	JLabel Imagemfundo, lbNomeMatricula, lbAcesso, lbCadastro, lbInsta, lbRodape, lbCabecalho;
 	JLabel lbLogo = new JLabel(icon);
 	JTextField textMatricula;
@@ -54,7 +57,8 @@ public class InterfaceGUI {
 		panel.setSize(1000,700);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		Imagemfundo = new JLabel();
+		icon3.setImage(icon3.getImage().getScaledInstance(650,700,100));
+		Imagemfundo = new JLabel(icon3);
 		panel.add(Imagemfundo);
 		//ficara a imagem promocional da faculdade
 		Imagemfundo.setVisible(true);
@@ -73,7 +77,7 @@ public class InterfaceGUI {
 		lbInsta.setBounds(700,580,25,25);
 		//rodape
 		lbRodape = new JLabel(); lbCabecalho = new JLabel();
-		lbRodape.setBounds(0,622,1000,40);
+		lbRodape.setBounds(0,632,1000,40);
 		lbRodape.setBackground(new Color(255,20,147));
 		lbRodape.setOpaque(true);
 		lbCabecalho.setBounds(0,0,1000,30);
@@ -86,11 +90,16 @@ public class InterfaceGUI {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://www.instagram.com/uninabuco/"));
-				}catch(Exception erro) {
-					
-				}
+				}catch(Exception erro) {}
 			}
-			
+		});
+		Imagemfundo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://vestibular.uninabuco.edu.br/"));
+				}catch(Exception erro) {}
+			}
 		});
 		
 		lbNomeMatricula = new JLabel("Informe sua Matrícula");
@@ -331,14 +340,14 @@ public class InterfaceGUI {
 		lbMatriculaProfessor.setFont(new Font("Verdana",0,12));
 		
 		//esboco da area onde vai ficar o calendario
-		lbCampo1 = new JLabel("Calendario"); lbCampo2 = new JLabel();
+		lbCampo1 = new JLabel(); lbCampo2 = new JLabel();
 		panelAcesso.add(lbCampo1); panelAcesso.add(lbCampo2);
 		lbCampo1.setBorder(new MatteBorder(1, 1, 1, 1, new Color(169,169,169)));
 		lbCampo1.setBounds(50,170,880,240);
-		lbCampo1.setOpaque(true); lbCampo1.setBackground(new Color(248,248,255));
+		//lbCampo1.setOpaque(true); lbCampo1.setBackground(new Color(248,248,255)); //remover
 		lbCampo2.setBorder(new MatteBorder(1, 1, 1, 1, new Color(169,169,169)));
 		lbCampo2.setBounds(50,440,880,110);
-		//lbCampo2.setOpaque(true); lbCampo2.setBackground(new Color(248,248,255));
+		//lbCampo2.setOpaque(true); lbCampo2.setBackground(new Color(248,248,255)); //remover
 		
 		//info dos labs
 		lbLab1 = new JLabel("Laboratório 1"); lbLab2 = new JLabel("Laboratório 2");
@@ -353,8 +362,53 @@ public class InterfaceGUI {
 		lbDia.setBounds(60,440,200,30);
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		String dia = sdf.format(c.getTime());
+		SimpleDateFormat sdfn = new SimpleDateFormat("EEEE");
+		String dia = sdfn.format(c.getTime())+", "+sdf.format(c.getTime());
+		dia = dia.substring(0,1).toUpperCase().concat(dia.substring(1));
 		lbDia.setText(dia);
+		//Calendario c = new Calendario();
+		//lbDia.setText(c.getDataAtual());
+		
+		//tentativa de calendario, criar classe
+		JPanel panelCalendario, panelSemana, panelMes;
+		panelCalendario = new JPanel(); panelSemana = new JPanel();
+		panelMes = new JPanel();
+		SimpleDateFormat sdfm = new SimpleDateFormat("MMMMM"); //nome do mes
+		JLabel lbMes = new JLabel(sdfm.format(c.getTime())+", "+c.get(Calendar.YEAR)); //nome do mes
+		panelMes.add(lbMes);
+		//panelCalendario.setBackground(Color.DARK_GRAY);
+		panelCalendario.setSize(340,150); panelSemana.setSize(340,20);
+		panelMes.setSize(340,20);
+		panelCalendario.setBounds(100,240,340,150); panelSemana.setBounds(100,220,340,20);
+		panelMes.setBounds(100,200,340,20);
+		panelCalendario.setLayout(new GridLayout(5,2)); panelSemana.setLayout(new GridLayout(1,1));
+		panelMes.setLayout(new GridLayout(1,1));
+		panelAcesso.add(panelCalendario); panelAcesso.add(panelSemana); panelAcesso.add(panelMes);
+		
+		JButton[] btnDias = new JButton[35];
+		JLabel[] lbSemana = new JLabel[7];
+		
+		for(int i=0; i<lbSemana.length; i++) {
+			lbSemana[i] = new JLabel();
+			lbSemana[i].setFont(new Font("Verdana",1,10));
+			lbSemana[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			panelSemana.add(lbSemana[i]);
+		}
+		
+		lbSemana[0].setText("D"); lbSemana[1].setText("S"); lbSemana[2].setText("T");
+		lbSemana[3].setText("Q"); lbSemana[4].setText("Q"); lbSemana[5].setText("S");
+		lbSemana[6].setText("S");
+		
+		for(int i=0; i<btnDias.length; i++) {
+			btnDias[i] = new JButton();
+			btnDias[i].setFont(new Font("Verdana",0,10));
+			btnDias[i].setBackground(new Color(248,248,255));
+			//btnDias[i].setText(Integer.toString(i+1));
+			panelCalendario.add(btnDias[i]);
+		}
+		for(int i=5, j=0; i<btnDias.length; i++,j++){
+			btnDias[i].setText(Integer.toString(j+1));
+		}
 	}
 
 	//main
