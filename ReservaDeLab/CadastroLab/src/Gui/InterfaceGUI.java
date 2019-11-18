@@ -3,7 +3,6 @@ package Gui;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -12,9 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 public class InterfaceGUI {
@@ -284,6 +279,9 @@ public class InterfaceGUI {
 	
 	JLabel lbNomeProfessor, lbCampo1, lbCampo2, lbMatriculaProfessor, lbLogOut, 
 	lbLogo2, lbReserva, lbLab1, lbLab2, lbDia;
+	
+	//Classe para manipular calendario
+	Calendario calendario = new Calendario();
 
 	private void acessoProfessor() {
 		//configurações do panel
@@ -360,55 +358,11 @@ public class InterfaceGUI {
 		panelAcesso.add(lbDia);
 		lbDia.setFont(new Font("Verdana",0,14));
 		lbDia.setBounds(60,440,200,30);
-		Calendar c = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat sdfn = new SimpleDateFormat("EEEE");
-		String dia = sdfn.format(c.getTime())+", "+sdf.format(c.getTime());
-		dia = dia.substring(0,1).toUpperCase().concat(dia.substring(1));
+		String dia = calendario.getDiaNome()+", "+calendario.getDataAtual();
 		lbDia.setText(dia);
-		//Calendario c = new Calendario();
-		//lbDia.setText(c.getDataAtual());
 		
-		//tentativa de calendario, criar classe
-		JPanel panelCalendario, panelSemana, panelMes;
-		panelCalendario = new JPanel(); panelSemana = new JPanel();
-		panelMes = new JPanel();
-		SimpleDateFormat sdfm = new SimpleDateFormat("MMMMM"); //nome do mes
-		JLabel lbMes = new JLabel(sdfm.format(c.getTime())+", "+c.get(Calendar.YEAR)); //nome do mes
-		panelMes.add(lbMes);
-		//panelCalendario.setBackground(Color.DARK_GRAY);
-		panelCalendario.setSize(340,150); panelSemana.setSize(340,20);
-		panelMes.setSize(340,20);
-		panelCalendario.setBounds(100,240,340,150); panelSemana.setBounds(100,220,340,20);
-		panelMes.setBounds(100,200,340,20);
-		panelCalendario.setLayout(new GridLayout(5,2)); panelSemana.setLayout(new GridLayout(1,1));
-		panelMes.setLayout(new GridLayout(1,1));
-		panelAcesso.add(panelCalendario); panelAcesso.add(panelSemana); panelAcesso.add(panelMes);
-		
-		JButton[] btnDias = new JButton[35];
-		JLabel[] lbSemana = new JLabel[7];
-		
-		for(int i=0; i<lbSemana.length; i++) {
-			lbSemana[i] = new JLabel();
-			lbSemana[i].setFont(new Font("Verdana",1,10));
-			lbSemana[i].setHorizontalTextPosition(SwingConstants.CENTER);
-			panelSemana.add(lbSemana[i]);
-		}
-		
-		lbSemana[0].setText("D"); lbSemana[1].setText("S"); lbSemana[2].setText("T");
-		lbSemana[3].setText("Q"); lbSemana[4].setText("Q"); lbSemana[5].setText("S");
-		lbSemana[6].setText("S");
-		
-		for(int i=0; i<btnDias.length; i++) {
-			btnDias[i] = new JButton();
-			btnDias[i].setFont(new Font("Verdana",0,10));
-			btnDias[i].setBackground(new Color(248,248,255));
-			//btnDias[i].setText(Integer.toString(i+1));
-			panelCalendario.add(btnDias[i]);
-		}
-		for(int i=5, j=0; i<btnDias.length; i++,j++){
-			btnDias[i].setText(Integer.toString(j+1));
-		}
+		//cria o calendario grafico
+		calendario.criaCalendario(panelAcesso);
 	}
 
 	//main
