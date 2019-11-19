@@ -3,6 +3,8 @@ package Gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -27,7 +29,7 @@ public class Calendario {
 	}
 	
 	public String getDiaNome() {
-		/* Retorna o dia da semana por extenso, ex s·bado
+		/* Retorna o dia da semana por extenso, ex s√°bado
 		 */
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
 		String dia = sdf.format(c.getTime());
@@ -39,7 +41,7 @@ public class Calendario {
 	public String getNomeMes(){
 		/* Retorna o nome do mes por extenso, ex agosto
 		 */
-		SimpleDateFormat sdf = new SimpleDateFormat("MMMMM");
+		SimpleDateFormat sdf = new SimpleDateFormat("M");
 		String mes = sdf.format(c.getTime());
 		mes = mes.substring(0,1).toUpperCase().concat(mes.substring(1));
 		
@@ -94,6 +96,23 @@ public class Calendario {
 		//mes de novembro
 		for(int i=5, j=0; i<btnDias.length; i++,j++){
 			btnDias[i].setText(Integer.toString(j+1));
+		}
+		
+		for(int i=0; i<btnDias.length; i++){
+			int j =i;
+			btnDias[j].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					btnDias[j].setBackground(new Color(218,112,214));
+					for(int k=0; k<btnDias.length; k++){
+						if(k != j)
+							btnDias[k].setBackground(new Color(248,248,255));
+					}
+					String data = getAno()+"/"+getNomeMes()+"/"+btnDias[j].getText();
+					System.out.println(data);
+					
+				}
+			});
 		}
 	}
 
