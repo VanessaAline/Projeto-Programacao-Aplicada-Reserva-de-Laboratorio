@@ -1,6 +1,7 @@
 package Gui;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -88,6 +89,7 @@ public class InterfaceGUI {
 				}catch(Exception erro) {}
 			}
 		});
+		mudarMouse(lbInsta);
 		Imagemfundo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -96,6 +98,7 @@ public class InterfaceGUI {
 				}catch(Exception erro) {}
 			}
 		});
+		mudarMouse(Imagemfundo);
 		
 		lbNomeMatricula = new JLabel("Informe sua Matrícula");
 		panel.add(lbNomeMatricula);
@@ -120,7 +123,6 @@ public class InterfaceGUI {
 					textMatricula.setText("");
 				}
 			}
-
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(textMatricula.getText().equals("")) {
@@ -137,7 +139,6 @@ public class InterfaceGUI {
 					textSenha.setText("");
 				}
 			}
-
 			@SuppressWarnings("deprecation")
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -275,6 +276,7 @@ public class InterfaceGUI {
 				});
 			}
 		});
+		mudarMouse(label);
 	}
 	
 	JLabel lbNomeProfessor, lbCampo1, lbCampo2, lbMatriculaProfessor, lbLogOut, 
@@ -354,15 +356,23 @@ public class InterfaceGUI {
 		lbLab1.setBounds(60,480,100,30); lbLab2.setBounds(60,510,100,30);
 		//lbLab1.setForeground(new Color(255,20,147)); lbLab2.setForeground(new Color(255,20,147));
 		
-		lbDia = new JLabel(); //exemplo de data
-		panelAcesso.add(lbDia);
-		lbDia.setFont(new Font("Verdana",0,14));
-		lbDia.setBounds(60,440,200,30);
-		String dia = calendario.getDiaNome()+", "+calendario.getDataAtual();
-		lbDia.setText(dia);
-		
 		//cria o calendario grafico
 		calendario.criaCalendario(panelAcesso);
+	}
+	
+	public void mudarMouse(JLabel label) {
+		/* Funcao para mudar o cursor do mouse ao passar por um hiperlink
+		 */
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) { //em cima no label
+				label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) { //fora da label
+				label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
 	}
 
 	//main
