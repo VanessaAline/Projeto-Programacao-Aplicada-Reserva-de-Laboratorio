@@ -4,7 +4,6 @@ import java.beans.Statement;
 import java.sql.SQLException;
 
 
-//erro
 public class CriarTabela {
 
 	private final Conexao conexaoSqlite;
