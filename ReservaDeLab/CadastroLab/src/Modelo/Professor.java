@@ -3,7 +3,7 @@ package Modelo;
 public class Professor {
 	
 	private String nome;
-	private int matricula;
+	private String matricula;
 	private String senha;
 	
 	//Construtor
@@ -20,11 +20,11 @@ public class Professor {
 		this.nome = nome;
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 	
