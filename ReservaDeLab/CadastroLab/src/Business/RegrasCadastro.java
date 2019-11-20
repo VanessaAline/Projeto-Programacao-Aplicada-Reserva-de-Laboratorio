@@ -10,4 +10,8 @@ public class RegrasCadastro {
 		}
 		return false;
 	}
+	
+	public boolean reservado(){
+		return false;
+	}
 }
