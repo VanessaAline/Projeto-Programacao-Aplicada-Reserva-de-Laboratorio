@@ -1,15 +1,11 @@
 package Business;
 
 import Modelo.Professor;
-import Business.RegrasNegocio;
 
 public class RegrasCadastro {
 	
-	RegrasNegocio prof = new RegrasNegocio();
-	
-	public boolean Salvar(Professor p) {
-		if(p.getMatricula() != null) {
-			this.prof.novoCadastro(p);
+	public boolean validarCadastro(Professor prof) {
+		if(prof.getMatricula() != null && prof.getNome() != null && prof.getSenha() != null) {
 			return true;
 		}
 		return false;
