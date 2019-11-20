@@ -271,9 +271,11 @@ public class InterfaceGUI {
 				btnCadastrar.addActionListener(new ActionListener() {
 					//@Override
 					public void actionPerformed(ActionEvent e) {
+						//onde é realizad o cadastro de um professor
 						fachada.criarProf(textNome.getText(), textNewMatricula.getText(), textNewSenha.getText());
-						fachada.cadastrarProf();
-						//acao de cadastrar
+						if(fachada.validarCadastro()){ //valida se os campos n sao nulos
+							fachada.cadastrarProf();
+						}
 					}
 				});
 				//acao do botao voltar
