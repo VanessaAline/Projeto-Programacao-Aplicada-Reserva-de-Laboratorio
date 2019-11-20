@@ -21,9 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
-import Banco.Inserir;
 import Fachada.Fachada;
-import Modelo.Professor;
 
 /*
  * Classe principal onde ficara a GUI
