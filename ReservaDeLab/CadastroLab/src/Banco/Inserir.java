@@ -5,13 +5,15 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import Modelo.Professor;
 import sun.applet.Main;
 
 public class Inserir {
+	Conexao conexao = new Conexao();
 	
 	public void cadastrarProfessor(Professor prof){
-		Conexao conexao = new Conexao();
 		
 		conexao.conectar();
 		
@@ -27,12 +29,12 @@ public class Inserir {
 			int resultado = prepared.executeUpdate();
 			
 			if(resultado == 1) {
-				System.out.println("Professor Cadastrado");
+				JOptionPane.showMessageDialog(null, "Professor Cadastrado");
 			}else {
-				System.out.println("Professor n„o inserido");
+				JOptionPane.showMessageDialog(null, "Professor n√£o Cadastrado");
 			}
 		}catch(SQLException e) {
-			System.out.println("Professor n„o inserido");
+			JOptionPane.showMessageDialog(null, "Professor n√£o Cadastrado");
 		}finally {
 			if(prepared != null) {
 				try {
