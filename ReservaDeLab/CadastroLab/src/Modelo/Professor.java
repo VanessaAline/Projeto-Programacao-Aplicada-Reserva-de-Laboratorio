@@ -7,9 +7,13 @@ public class Professor {
 	private String senha;
 	
 	//Construtor
-	public Professor(String nome, int matricula){
-		super();
+	public Professor(String nome, String matricula, String senha){
+		this.matricula = matricula;
+		this.nome = nome;
+		this.senha = senha;
 	}
+	
+	public Professor(){}
 
 	//Get´s & Set´s
 	public String getNome() {
