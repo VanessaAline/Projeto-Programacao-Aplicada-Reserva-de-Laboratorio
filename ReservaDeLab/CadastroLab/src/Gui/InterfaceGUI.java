@@ -21,24 +21,38 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
+import Banco.Inserir;
+import Fachada.Fachada;
+import Modelo.Professor;
+
+/*
+ * Classe principal onde ficara a GUI
+ */
 public class InterfaceGUI {
-	//variaveis
-	JFrame tela = new JFrame("Reserva de Laboratórios");
-	JPanel panel, panelCadastro, panelAcesso;
-	ImageIcon icon = new ImageIcon(getClass().getResource("untitled.png"));
-	ImageIcon icon2 = new ImageIcon(getClass().getResource("Untitled.png"));
-	ImageIcon icon3 = new ImageIcon(getClass().getResource("nabuco.jpg"));
-	JLabel Imagemfundo, lbNomeMatricula, lbAcesso, lbCadastro, lbInsta, lbRodape, lbCabecalho;
-	JLabel lbLogo = new JLabel(icon);
-	JTextField textMatricula;
-	JPasswordField textSenha; //para pegar o texto do password usa getPassword()
-	JButton btnEntrar, btnCadastrar, btnVoltar;
+	//atributos
+	private JFrame tela = new JFrame("Reserva de Laboratórios");
+	private JPanel panel, panelCadastro, panelAcesso;
+	private ImageIcon icon = new ImageIcon(getClass().getResource("untitled.png"));
+	private ImageIcon icon2 = new ImageIcon(getClass().getResource("Untitled.png"));
+	private ImageIcon icon3 = new ImageIcon(getClass().getResource("nabuco.jpg"));
+	private JLabel Imagemfundo, lbNomeMatricula, lbAcesso, lbCadastro, lbInsta, lbRodape, lbCabecalho;
+	private JLabel lbLogo = new JLabel(icon);
+	private JTextField textMatricula;
+	private JPasswordField textSenha; //para pegar o texto do password usa getPassword()
+	private JButton btnEntrar, btnCadastrar, btnVoltar;
+	
+	/*
+	 * Fachada para acessar outras classes e metodos
+	 */
+	private Fachada fachada = new Fachada();
 
 	//construtor
 	public InterfaceGUI() {}
 	
 	//metodo inicializa
 	public void inicializa() {
+		/* Metodo principal da classe InterfaceGUI
+		 */
 		//Configurações da Tela
 		tela.setSize(1000,700);
 		tela.setVisible(true);
@@ -46,8 +60,7 @@ public class InterfaceGUI {
 		tela.setResizable(false);
 		tela.setLocationRelativeTo(null);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//tela.setExtendedState(JFrame.MAXIMIZED_BOTH); teste
-		
+		//configuraçõe Panel
 		panel = new JPanel();
 		tela.add(panel);
 		panel.setSize(1000,700);
@@ -56,7 +69,6 @@ public class InterfaceGUI {
 		icon3.setImage(icon3.getImage().getScaledInstance(650,700,100));
 		Imagemfundo = new JLabel(icon3);
 		panel.add(Imagemfundo);
-		//ficara a imagem promocional da faculdade
 		Imagemfundo.setVisible(true);
 		Imagemfundo.setOpaque(true);
 		Imagemfundo.setBackground(Color.BLACK);
@@ -71,7 +83,7 @@ public class InterfaceGUI {
 		lbInsta = new JLabel(iconInsta);
 		panel.add(lbInsta);
 		lbInsta.setBounds(700,580,25,25);
-		//rodape
+		//rodape e cabeçalho
 		lbRodape = new JLabel(); lbCabecalho = new JLabel();
 		lbRodape.setBounds(0,632,1000,40);
 		lbRodape.setBackground(new Color(255,20,147));
@@ -82,16 +94,16 @@ public class InterfaceGUI {
 		
 		//clicar no icone do insta ira abrir a pagina do insta
 		lbInsta.addMouseListener(new MouseAdapter() {
-			@Override
+			//@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://www.instagram.com/uninabuco/"));
 				}catch(Exception erro) {}
 			}
 		});
-		mudarMouse(lbInsta);
+		mudarMouse(lbInsta); //metodo para alterar o cursor
 		Imagemfundo.addMouseListener(new MouseAdapter() {
-			@Override
+			//@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://vestibular.uninabuco.edu.br/"));
@@ -117,13 +129,13 @@ public class InterfaceGUI {
 
 		//acao de clicar dentro ou fora da caixa de texto
 		textMatricula.addFocusListener(new FocusAdapter() {
-			@Override
+			//@Override
 			public void focusGained(FocusEvent e) {
 				if(textMatricula.getText().equals("Matrícula")){
 					textMatricula.setText("");
 				}
 			}
-			@Override
+			//@Override
 			public void focusLost(FocusEvent e) {
 				if(textMatricula.getText().equals("")) {
 					textMatricula.setText("Matrícula");
@@ -132,15 +144,15 @@ public class InterfaceGUI {
 		});
 		
 		textSenha.addFocusListener(new FocusAdapter() {
-			@SuppressWarnings("deprecation")
-			@Override
+			//@SuppressWarnings("deprecation")
+			//@Override
 			public void focusGained(FocusEvent e) {
 				if(textSenha.getText().equals("Senha")){
 					textSenha.setText("");
 				}
 			}
-			@SuppressWarnings("deprecation")
-			@Override
+			//@SuppressWarnings("deprecation")
+			//@Override
 			public void focusLost(FocusEvent e) {
 				if(textSenha.getText().equals("")) {
 					textSenha.setText("Senha");
@@ -158,7 +170,7 @@ public class InterfaceGUI {
 		btnEntrar.setBounds(700,400,100,30);
 		
 		btnEntrar.addActionListener(new ActionListener() {
-			@Override
+			//@Override
 			public void actionPerformed(ActionEvent e) {
 				//code do botao entrar
 				acessoProfessor();
@@ -184,8 +196,10 @@ public class InterfaceGUI {
 	
 	//funcao para cadastrar um professor
 	private void novoCadastro(JLabel label) {
+		/* Funcao para cadastrar um novo professor
+		 */
 		label.addMouseListener(new MouseAdapter() {
-			@Override
+			//@Override
 			public void mouseClicked(MouseEvent e) {
 				//codigo da tela de cadastro
 				panelCadastro = new JPanel();
@@ -244,7 +258,6 @@ public class InterfaceGUI {
 				textNewMatricula.setBackground(new Color(248,248,255));
 				textNewMatricula.setBounds(100,300,500,30);
 				
-				//falta definir como vai ser a senha, aleatoria ou escolhida
 				lbSenha = new JLabel("Informe sua Senha");
 				panelCadastro.add(lbSenha);
 				lbSenha.setFont(new Font("Verdana",0,14));
@@ -258,15 +271,16 @@ public class InterfaceGUI {
 				
 				//acao do bota cadastrar
 				btnCadastrar.addActionListener(new ActionListener() {
-					@Override
+					//@Override
 					public void actionPerformed(ActionEvent e) {
-						System.exit(0);
+						fachada.criarProf(textNome.getText(), textNewMatricula.getText(), textNewSenha.getText());
+						fachada.cadastrarProf();
 						//acao de cadastrar
 					}
 				});
 				//acao do botao voltar
 				btnVoltar.addActionListener(new ActionListener() {
-					@Override
+					//@Override
 					public void actionPerformed(ActionEvent e) {
 						panelCadastro.setVisible(false);
 						tela.add(panel);
@@ -286,6 +300,8 @@ public class InterfaceGUI {
 	Calendario calendario = new Calendario();
 
 	private void acessoProfessor() {
+		/* Funcao para manipulacao da area de acesso do professor
+		 */
 		//configurações do panel
 		panelAcesso = new JPanel();
 		panel.setVisible(false);
@@ -313,15 +329,16 @@ public class InterfaceGUI {
 		
 		//passar o mouse no nome logout
 		lbLogOut.addMouseListener(new MouseAdapter() {
-			@Override
+			//@Override
 			public void mouseEntered(MouseEvent e) { //em cima do nome
 				lbLogOut.setFont(new Font("Verdana",1,12));
 			}
-			@Override
+			//@Override
 			public void mouseExited(MouseEvent e) { //fora do nome
 				lbLogOut.setFont(new Font("Verdana",0,12));
 			}
-			@Override
+			//@Override
+			////deslogar
 			public void mouseClicked(MouseEvent e) {
 				panelAcesso.setVisible(false);
 				tela.add(panel);
@@ -344,31 +361,28 @@ public class InterfaceGUI {
 		panelAcesso.add(lbCampo1); panelAcesso.add(lbCampo2);
 		lbCampo1.setBorder(new MatteBorder(1, 1, 1, 1, new Color(169,169,169)));
 		lbCampo1.setBounds(50,170,880,240);
-		//lbCampo1.setOpaque(true); lbCampo1.setBackground(new Color(248,248,255)); //remover
 		lbCampo2.setBorder(new MatteBorder(1, 1, 1, 1, new Color(169,169,169)));
 		lbCampo2.setBounds(50,440,880,110);
-		//lbCampo2.setOpaque(true); lbCampo2.setBackground(new Color(248,248,255)); //remover
 		
 		//info dos labs
 		lbLab1 = new JLabel("Laboratório 1"); lbLab2 = new JLabel("Laboratório 2");
 		panelAcesso.add(lbLab1); panelAcesso.add(lbLab2);
 		lbLab1.setFont(new Font("Verdana",0,14)); lbLab2.setFont(new Font("Verdana",0,14));
 		lbLab1.setBounds(60,480,100,30); lbLab2.setBounds(60,510,100,30);
-		//lbLab1.setForeground(new Color(255,20,147)); lbLab2.setForeground(new Color(255,20,147));
 		
-		//cria o calendario grafico
+		//cria o calendario grafico passando um panel por parametro
 		calendario.criaCalendario(panelAcesso);
 	}
 	
-	public void mudarMouse(JLabel label) {
+	private void mudarMouse(final JLabel label) {
 		/* Funcao para mudar o cursor do mouse ao passar por um hiperlink
 		 */
 		label.addMouseListener(new MouseAdapter() {
-			@Override
+			//@Override
 			public void mouseEntered(MouseEvent e) { //em cima no label
 				label.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
-			@Override
+			//@Override
 			public void mouseExited(MouseEvent e) { //fora da label
 				label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
