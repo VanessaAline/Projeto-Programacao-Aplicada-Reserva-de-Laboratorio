@@ -19,10 +19,7 @@ public class Principal {
 		
 		Professor pessoa2 = new Professor();
 		Professor pessoa3 = new Professor();
-		Professor pessoa4 = new Professor();
-		
-		InterfaceGUI teste1 = new InterfaceGUI();
-		
+		Professor pessoa4 = new Professor();		
 		
 		pessoa2.setMatricula("01144105");
 		pessoa2.setSenha("eu"); 
