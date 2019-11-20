@@ -65,13 +65,22 @@ public class Calendario {
 		return ano;
 	}
 	
+	public String enviaDataBanco() {
+		/* Funcao para enviar a data no formato yyyy/MM/dd para o banco
+		 */
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String data = sdf.format(c.getTime());
+		
+		return data;
+	}
+	
 	public void criaCalendario(JPanel panel){
 		/* Cria um calendario grafico em um JPanel passado por parametro
 		 * a principio, somente o mes de novembro
 		 */
 		panelCalendario = new JPanel(); panelSemana = new JPanel();
 		panelMes = new JPanel();
-		JLabel lbDia = new JLabel();
+		final JLabel lbDia = new JLabel();
 
 		JLabel lbMes = new JLabel(getNomeMes()+" de "+getAno());
 		lbMes.setFont(new Font("Verdana",0,14));
@@ -91,7 +100,7 @@ public class Calendario {
 		lbDia.setText(dia);
 		
 		//botoes e labels
-		JButton[] btnDias = new JButton[35];
+		final JButton[] btnDias = new JButton[35];
 		JLabel[] lbSemana = new JLabel[7];
 		
 		//adicionando os dias
@@ -120,9 +129,9 @@ public class Calendario {
 		
 		//for para mudar a cor no calendario e fazer a manipulacao da data
 		for(int i=0; i<btnDias.length; i++){
-			int j =i;
+			final int j =i;
 			btnDias[j].addActionListener(new ActionListener() {
-				@Override
+				//@Override
 				public void actionPerformed(ActionEvent e) {
 					btnDias[j].setBackground(new Color(218,112,214));
 					for(int k=0; k<btnDias.length; k++){
