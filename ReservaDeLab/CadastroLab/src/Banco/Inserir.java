@@ -29,12 +29,12 @@ public class Inserir {
 			int resultado = prepared.executeUpdate();
 			
 			if(resultado == 1) {
-				JOptionPane.showMessageDialog(null, "Professor Cadastrado");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor Cadastrado</p></body></html>");
 			}else {
-				JOptionPane.showMessageDialog(null, "Professor não Cadastrado");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor não Cadastrado</p></body></html>");
 			}
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "Professor não Cadastrado");
+			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor não Cadastrado</p></body></html>");
 		}finally {
 			if(prepared != null) {
 				try {
