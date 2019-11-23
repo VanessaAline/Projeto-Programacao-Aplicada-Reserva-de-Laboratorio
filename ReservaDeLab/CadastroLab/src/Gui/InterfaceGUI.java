@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -74,8 +75,8 @@ public class InterfaceGUI {
 		
 		//logos
 		panel.add(lbLogo);
-		icon.setImage(icon.getImage().getScaledInstance(250,120,100));
-		lbLogo.setBounds(680,60,240,120);
+		icon.setImage(icon.getImage().getScaledInstance(250,160,100));
+		lbLogo.setBounds(680,60,240,160);
 		ImageIcon iconInsta = new ImageIcon(getClass().getResource("insta.png"));
 		iconInsta.setImage(iconInsta.getImage().getScaledInstance(25,25,100));
 		lbInsta = new JLabel(iconInsta);
@@ -171,7 +172,13 @@ public class InterfaceGUI {
 			//@Override
 			public void actionPerformed(ActionEvent e) {
 				//code do botao entrar
-				acessoProfessor();
+				boolean acesso = fachada.validarAcesso(textMatricula.getText(), textSenha.getText());
+				if(acesso){
+					acessoProfessor();
+				}else{
+					JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>LOGIN INVALIDO</p></body></html>");
+				}
+				
 			}
 		});
 		
@@ -348,8 +355,8 @@ public class InterfaceGUI {
 		});
 		
 		//informacoes do professor
-		lbNomeProfessor = new JLabel("Andrey Roberto Serafim Ferreira");
-		lbMatriculaProfessor = new JLabel("11033358");
+		lbNomeProfessor = new JLabel("Acesso Professor");
+		lbMatriculaProfessor = new JLabel(textMatricula.getText());
 		panelAcesso.add(lbNomeProfessor); panelAcesso.add(lbMatriculaProfessor);
 		lbNomeProfessor.setBounds(50,100,300,30);
 		lbNomeProfessor.setFont(new Font("Verdana",0,14));
@@ -369,6 +376,13 @@ public class InterfaceGUI {
 		panelAcesso.add(lbLab1); panelAcesso.add(lbLab2);
 		lbLab1.setFont(new Font("Verdana",0,14)); lbLab2.setFont(new Font("Verdana",0,14));
 		lbLab1.setBounds(60,480,100,30); lbLab2.setBounds(60,510,100,30);
+		
+		JLabel lb1 = new JLabel((fachada.reservado())?"RESERVADO":"LIVRE");
+		panelAcesso.add(lb1); lb1.setFont(new Font("Verdana",0,14));
+		lb1.setBounds(200,480,100,30);
+		JLabel lb2 = new JLabel((fachada.reservado())?"RESERVADO":"LIVRE");
+		panelAcesso.add(lb2); lb2.setFont(new Font("Verdana",0,14));
+		lb2.setBounds(200,510,100,30);
 		
 		//cria o calendario grafico passando um panel por parametro
 		calendario.criaCalendario(panelAcesso);
