@@ -35,7 +35,7 @@ public class Calendario {
 	}
 	
 	public String getDiaNome() {
-		/* Retorna o dia da semana por extenso, ex sábado
+		/* Retorna o dia da semana por extenso, ex sÃ¡bado
 		 * Converte a primeira letra para MAIUSC
 		 */
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -147,5 +147,9 @@ public class Calendario {
 				}
 			});
 		}
+	}
+	
+	public void botaoApertado(){
+		
 	}
 }
