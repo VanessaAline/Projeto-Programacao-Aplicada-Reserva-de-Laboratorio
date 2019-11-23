@@ -15,7 +15,7 @@ public class Professor {
 	
 	public Professor(){}
 
-	//Get´s & Set´s
+	//GetÂ´s & SetÂ´s
 	public String getNome() {
 		return nome;
 	}
