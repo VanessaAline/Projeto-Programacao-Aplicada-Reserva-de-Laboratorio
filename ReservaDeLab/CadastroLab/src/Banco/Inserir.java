@@ -2,13 +2,13 @@ package Banco;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
 import Modelo.Professor;
-import sun.applet.Main;
+//import sun.applet.Main;
 
 public class Inserir {
 	Conexao conexao = new Conexao();
@@ -40,7 +40,7 @@ public class Inserir {
 				try {
 					prepared.close();
 				}catch(SQLException e) {
-					Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+					//Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
 				}
 			}
 			conexao.desconectar();
