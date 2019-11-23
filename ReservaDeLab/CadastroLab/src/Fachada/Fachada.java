@@ -1,6 +1,7 @@
 package Fachada;
 
 import Banco.Inserir;
+import Banco.Pesquisar;
 import Business.RegrasCadastro;
 import Modelo.Laboratorio;
 import Modelo.Professor;
@@ -11,12 +12,14 @@ public class Fachada {
 	Laboratorio lab;
 	Inserir insert;
 	RegrasCadastro regra;
+	Pesquisar consulta;
 	
 	public Fachada(){
 		prof = new Professor();
 		lab = new Laboratorio();
 		insert = new Inserir();
 		regra = new RegrasCadastro();
+		consulta = new Pesquisar();
 	}
 
 	public void criarProf(String nome, String matricula, String senha){
@@ -30,8 +33,25 @@ public class Fachada {
 	public boolean validarCadastro(){
 		return regra.validarCadastro(prof);
 	}
-	//implementar melhor
+	//consulta de reserva laboratorio
 	public boolean reservado(){
-		return lab.getReservado();
+		if(consulta.pesquisar2("")){
+			return true;
+		}
+		return false;
+	}
+	
+	public String consultaProf(){
+		String str = prof.getMatricula() + prof.getSenha();
+		
+		return str;
+	}
+	
+	public String retornaNomeProf(){
+		return prof.getNome();
+	}
+	
+	public boolean validarAcesso(String matricula, String senha){
+		return regra.validarAcesso(matricula, senha);
 	}
 }
