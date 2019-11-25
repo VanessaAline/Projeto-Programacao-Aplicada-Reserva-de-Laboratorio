@@ -14,12 +14,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import Banco.ConsultarReserva;
+
 /* 
  * Classe para manipular datas e criar calendario visual
  */
 public class Calendario {
 	//atributos
 	private Calendar c = Calendar.getInstance();
+	private ConsultarReserva consultaReserva = new ConsultarReserva();
 	private JPanel panelCalendario, panelSemana, panelMes;
 	
 	//construtor
@@ -99,6 +102,12 @@ public class Calendario {
 		String dia = "Data: "+getDataAtual();
 		lbDia.setText(dia);
 		
+		//exibir se os labs tao reservados
+		JLabel lbReservado1 = new JLabel(); JLabel lbReservado2 = new JLabel();
+		panel.add(lbReservado1); panel.add(lbReservado2);
+		lbReservado1.setFont(new Font("Verdana",0,14)); lbReservado2.setFont(new Font("Verdana",0,14));
+		lbReservado1.setBounds(200,480,100,30); lbReservado2.setBounds(200,510,100,30);
+		
 		//botoes e labels
 		final JButton[] btnDias = new JButton[35];
 		JLabel[] lbSemana = new JLabel[7];
@@ -134,9 +143,22 @@ public class Calendario {
 				//@Override
 				public void actionPerformed(ActionEvent e) {
 					btnDias[j].setBackground(new Color(218,112,214));
+					enviarData(btnDias[j]);
 					for(int k=0; k<btnDias.length; k++){
 						if(k != j)
 							btnDias[k].setBackground(new Color(248,248,255));
+					}
+					//onde verificamos se a data esta reservada passando os codigo dos labs
+					String dataBanco = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+btnDias[j].getText();
+					if(consultaReserva.consultaReserva(dataBanco, "11236")) {
+						lbReservado1.setText("RESERVADO");
+					}else {
+						lbReservado1.setText("LIVRE");
+					}
+					if(consultaReserva.consultaReserva(dataBanco, "26841")) {
+						lbReservado2.setText("RESERVADO");
+					}else {
+						lbReservado2.setText("LIVRE");
 					}
 					if(btnDias[j].getText() != null) {
 						String newData = "Data: "+btnDias[j].getText()+"/"+(c.get(Calendar.MONTH)+1)+"/"+getAno();
@@ -148,8 +170,12 @@ public class Calendario {
 			});
 		}
 	}
-	
-	public void botaoApertado(){
+
+	public boolean enviarData(JButton botao){
+		/* Função para enviar a data e verificar se esta reservada
+		 */
+		String newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+botao.getText();
 		
+		return consultaReserva.consultaReserva(newData, new String());
 	}
 }
