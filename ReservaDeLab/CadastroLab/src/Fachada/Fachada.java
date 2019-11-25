@@ -1,8 +1,14 @@
 package Fachada;
 
-import Banco.Inserir;
-import Banco.Pesquisar;
-import Business.RegrasCadastro;
+import javax.swing.JPanel;
+
+import Banco.Conexao;
+import Banco.ConsultarCadastroProfessor;
+import Banco.ConsultarNomeProfessor;
+import Banco.ConsultarReserva;
+import Banco.CriarTabelas;
+import Banco.InserirProfessor;
+import Gui.Calendario;
 import Modelo.Laboratorio;
 import Modelo.Professor;
 
@@ -10,48 +16,67 @@ public class Fachada {
 	
 	Professor prof;
 	Laboratorio lab;
-	Inserir insert;
-	RegrasCadastro regra;
-	Pesquisar consulta;
+	InserirProfessor insert;
+	ConsultarCadastroProfessor consultaProf;
+	CriarTabelas createTable;
+	Conexao conexao;
+	Calendario calendario;
+	ConsultarNomeProfessor consultaNome;
+	ConsultarReserva consultaReserva;
 	
 	public Fachada(){
 		prof = new Professor();
 		lab = new Laboratorio();
-		insert = new Inserir();
-		regra = new RegrasCadastro();
-		consulta = new Pesquisar();
+		insert = new InserirProfessor();
+		consultaProf = new ConsultarCadastroProfessor();
+		conexao = new Conexao();
+		createTable = new CriarTabelas(conexao);
+		calendario = new Calendario();
+		consultaNome = new ConsultarNomeProfessor();
+		consultaReserva = new ConsultarReserva();
 	}
 
+	//InserirProfessor
+	public void cadastrarProf(String matricula, String nome, String senha){
+		insert.cadastrarProfessor(matricula, nome, senha);
+	}
+	//InserirProfessor
 	public void criarProf(String nome, String matricula, String senha){
 		prof.setNome(nome);
 		prof.setMatricula(matricula);
 		prof.setSenha(senha);
 	}
-	public void cadastrarProf(){
-		insert.cadastrarProfessor(prof);
+	
+	//ConsultarProfessor
+	public boolean consultaProfessor(String matricula, String senha) {
+		return consultaProf.consultaProfessor(matricula, senha);
 	}
-	public boolean validarCadastro(){
-		return regra.validarCadastro(prof);
+	
+	//ConsultaNome
+	public String consultaNome(String matricula) {
+		return consultaNome.consultaNome(matricula);
 	}
-	//consulta de reserva laboratorio
-	public boolean reservado(){
-		if(consulta.pesquisar2("")){
-			return true;
+	
+	//CriarTabelas
+	public void criarTabelas() {
+		try {
+			createTable.criarTabelas();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return false;
 	}
 	
-	public String consultaProf(){
-		String str = prof.getMatricula() + prof.getSenha();
-		
-		return str;
+	//Calendario
+	public void criaCalendario(JPanel panel) {
+		calendario.criaCalendario(panel);
+	}
+	//Calendario
+	public boolean enviarData(String codigoLab) {
+		return consultaReserva.consultaReserva(new String(), codigoLab);
 	}
 	
-	public String retornaNomeProf(){
-		return prof.getNome();
-	}
-	
-	public boolean validarAcesso(String matricula, String senha){
-		return regra.validarAcesso(matricula, senha);
+	//ConsultarReserva
+	public boolean consultaReserva(String dataConsulta, String codigoLab) {
+		return consultaReserva.consultaReserva(dataConsulta, codigoLab);
 	}
 }
