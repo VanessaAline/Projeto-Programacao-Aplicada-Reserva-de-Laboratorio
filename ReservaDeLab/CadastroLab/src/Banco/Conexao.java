@@ -15,12 +15,11 @@ public class Conexao {
 	public Connection conectar() {
 		
 		try {
-			String url = "jdbc:sqlite:db/ReservaLab.db";
+			String url = "jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db";
 			
 			conexao = DriverManager.getConnection(url);
 		}catch(SQLException e) {
 			System.err.println(e.getMessage());
-			//return false;
 		}
 		return conexao;
 	}
@@ -29,7 +28,7 @@ public class Conexao {
 	public Connection conectar2() {
 		
 		try {
-			String url = "jdbc:sqlite:db/ReservaLab.db";
+			String url = "jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db";
 			
 			conexao = DriverManager.getConnection(url);
 		}catch(SQLException e) {
