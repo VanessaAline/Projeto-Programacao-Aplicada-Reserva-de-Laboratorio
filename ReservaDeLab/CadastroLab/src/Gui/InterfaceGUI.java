@@ -28,7 +28,6 @@ import Fachada.Fachada;
  * Classe principal onde ficara a GUI
  */
 
-//OK
 public class InterfaceGUI {
 	//atributos
 	private JFrame tela = new JFrame("Reserva de Laboratórios");
@@ -65,7 +64,7 @@ public class InterfaceGUI {
 		tela.setResizable(false);
 		tela.setLocationRelativeTo(null);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//configuraçõe Panel
+		//configurações Panel
 		panel = new JPanel();
 		tela.add(panel);
 		panel.setSize(1000,700);
@@ -99,7 +98,7 @@ public class InterfaceGUI {
 		
 		//clicar no icone do insta ira abrir a pagina do insta
 		lbInsta.addMouseListener(new MouseAdapter() {
-			//@Override
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://www.instagram.com/uninabuco/"));
@@ -108,7 +107,7 @@ public class InterfaceGUI {
 		});
 		mudarMouse(lbInsta); //metodo para alterar o cursor
 		Imagemfundo.addMouseListener(new MouseAdapter() {
-			//@Override
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://vestibular.uninabuco.edu.br/"));
@@ -134,13 +133,13 @@ public class InterfaceGUI {
 
 		//acao de clicar dentro ou fora da caixa de texto
 		textMatricula.addFocusListener(new FocusAdapter() {
-			//@Override
+			@Override
 			public void focusGained(FocusEvent e) {
 				if(textMatricula.getText().equals("Matrícula")){
 					textMatricula.setText("");
 				}
 			}
-			//@Override
+			@Override
 			public void focusLost(FocusEvent e) {
 				if(textMatricula.getText().equals("")) {
 					textMatricula.setText("Matrícula");
@@ -286,8 +285,8 @@ public class InterfaceGUI {
 					public void actionPerformed(ActionEvent e) {
 						//onde é realizado o cadastro de um professor
 						//verifica se os campos nao sao nulos
-						if(textNewNome.getText()!=null && textNewMatricula.getText()!=null && textNewSenha.getText()!=null) {
-							fachada.cadastrarProf(textNewNome.getText(), textNewMatricula.getText(), textNewSenha.getText());
+						if(textNewMatricula.getText()!=null && textNewNome.getText()!=null && textNewSenha.getText()!=null) {
+							fachada.cadastrarProf(textNewMatricula.getText(), textNewNome.getText(), textNewSenha.getText());
 						}
 					}
 				});
@@ -301,6 +300,7 @@ public class InterfaceGUI {
 						panel.add(lbLogo);
 						panel.setVisible(true);
 						textMatricula.setText("Matrícula");
+						textSenha.setText("Senha");
 					}
 				});
 			}
@@ -312,9 +312,6 @@ public class InterfaceGUI {
 	JButton btnReservar = new JButton();
 	JLabel lbNomeProfessor, lbCampo1, lbCampo2, lbMatriculaProfessor, lbLogOut, 
 	lbLogo2, lbReserva, lbLab1, lbLab2, lbDia;
-	
-	//Classe para manipular calendario
-	//Calendario calendario = new Calendario();
 
 	private void acessoProfessor() {
 		/* Funcao para manipulacao da area de acesso do professor
@@ -416,8 +413,6 @@ public class InterfaceGUI {
 			}
 		});
 	}
-	
-//OK
 
 	//main
 	public static void main(String[] args) throws ParseException {
