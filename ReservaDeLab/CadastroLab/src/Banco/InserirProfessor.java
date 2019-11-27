@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import com.sun.tools.javac.Main;
+import sun.tools.jar.Main;
+
+//import com.sun.tools.javac.Main;
 
 public class InserirProfessor {
 	/*
@@ -33,10 +35,10 @@ public class InserirProfessor {
 			if(resultado == 1) {
 				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor Cadastrado</p></body></html>");
 			}else {
-				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor não Cadastrado</p></body></html>");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor nao Cadastrado</p></body></html>");
 			}
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor não Cadastrado</p></body></html>");
+			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor nao Cadastrado</p></body></html>");
 		}finally {
 			if(prepared != null) {
 				try {
