@@ -1,5 +1,6 @@
 package Fachada;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Banco.Conexao;
@@ -8,9 +9,10 @@ import Banco.ConsultarNomeProfessor;
 import Banco.ConsultarReserva;
 import Banco.CriarTabelas;
 import Banco.InserirProfessor;
+import Banco.InserirReserva;
 import Gui.Calendario;
-import Modelo.Laboratorio;
 import Modelo.Professor;
+import Modelo.Reservado;
 
 public class Fachada {
 	
@@ -18,8 +20,9 @@ public class Fachada {
 	 * Classe que serve de fachada
 	 */
 	private Professor prof;
-	private Laboratorio lab;
 	private InserirProfessor insert;
+	private Reservado reservadoClasse;
+	private InserirReserva reserva;
 	private ConsultarCadastroProfessor consultaProf;
 	private CriarTabelas createTable;
 	private Conexao conexao;
@@ -29,7 +32,6 @@ public class Fachada {
 	
 	public Fachada(){
 		prof = new Professor();
-		lab = new Laboratorio();
 		insert = new InserirProfessor();
 		consultaProf = new ConsultarCadastroProfessor();
 		conexao = new Conexao();
@@ -37,6 +39,8 @@ public class Fachada {
 		calendario = new Calendario();
 		consultaNome = new ConsultarNomeProfessor();
 		consultaReserva = new ConsultarReserva();
+		reserva = new InserirReserva();
+		reservadoClasse = new Reservado();
 	}
 
 	//InserirProfessor
@@ -77,13 +81,40 @@ public class Fachada {
 	public boolean enviarData(String codigoLab) {
 		return consultaReserva.consultaReserva(new String(), codigoLab);
 	}
+	//Calendario
+	public String dataBanco(){
+		return calendario.enviaDataBanco();
+	}
 	//calendario
 	public String diaNome(String dia) {
-		return calendario.getDiaNome();
+		return calendario.getDiaNome(new String());
 	}
 	
 	//ConsultarReserva
 	public boolean consultaReserva(String dataConsulta, String codigoLab) {
 		return consultaReserva.consultaReserva(dataConsulta, codigoLab);
+	}
+	
+	//InserirReserva
+	public void criarReserva(String data, String codigo_lab, String matricula_prof, boolean reservado){
+		reservadoClasse.setData(data);
+		reservadoClasse.setCodigo_lab(codigo_lab);
+		reservadoClasse.setMatricula_prof(matricula_prof);
+		reservadoClasse.setReservado(reservado);
+		
+		System.out.println(reservadoClasse.getData() + " "+ reservadoClasse.getCodigo_lab() + " "+ reservadoClasse.getMatricula_prof()+" "+reservadoClasse.getReservado());
+	}
+	//InserirReserva
+	public void inserirReserva(){
+		reserva.inserirReserva(reservadoClasse);
+	}
+	//InserirReserva
+	public boolean verificaFDS(){
+		return calendario.verificaFDS(new JButton());
+	}
+	
+	//Professor
+	public String getMatricula(){
+		return prof.getMatricula();
 	}
 }
