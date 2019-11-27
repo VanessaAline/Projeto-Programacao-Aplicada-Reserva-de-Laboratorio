@@ -7,9 +7,10 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import com.sun.tools.javac.Main;
+//import com.sun.tools.javac.Main;
 
 import Modelo.Laboratorio;
+import sun.tools.jar.Main;
 
 public class InserirLaboratorio {
 	/*
@@ -33,12 +34,12 @@ public class InserirLaboratorio {
 			int resultado = prepared.executeUpdate();
 			
 			if(resultado == 1) {
-				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratório Cadastrado</p></body></html>");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratorio Cadastrado</p></body></html>");
 			}else {
-				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratório não Cadastrado</p></body></html>");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratorio nao Cadastrado</p></body></html>");
 			}
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratório não Cadastradoo</p></body></html>");
+			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratorio nao Cadastradoo</p></body></html>");
 		}finally {
 			if(prepared != null) {
 				try {
