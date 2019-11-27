@@ -27,8 +27,9 @@ public class ConsultarReserva {
 
 			while (rs.next()) {
 				String dataBanco = rs.getString("data");
+				String codigo_lab = rs.getString("codigo_lab");
 
-				if(dataBanco.equals(dataConsulta)) {
+				if(dataBanco.equals(dataConsulta) && codigo_lab.equals(codigoLab)) {
 					for(int i=0; i<consultaLab.consultaLaboratorio().size(); i++) {
 						if(consultaLab.consultaLaboratorio().get(i).equals(codigoLab)) {
 							encontrado = true;
