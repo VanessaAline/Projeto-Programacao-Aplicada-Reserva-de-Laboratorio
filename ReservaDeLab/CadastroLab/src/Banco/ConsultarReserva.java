@@ -7,6 +7,9 @@ import java.sql.Statement;
 
 public class ConsultarReserva {
 	
+	/*
+	 * Classe para verificar se tem uma data reservada
+	 */
 	private GerarArrayListCodigoLab consultaLab = new GerarArrayListCodigoLab();
 
 	public boolean consultaReserva(String dataConsulta, String codigoLab) {
@@ -16,7 +19,7 @@ public class ConsultarReserva {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db/ReservaLab.db");
+			c = DriverManager.getConnection("jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db");
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
@@ -24,7 +27,6 @@ public class ConsultarReserva {
 
 			while (rs.next()) {
 				String dataBanco = rs.getString("data");
-				//String codigoBanco = rs.getString("codigo_lab");
 
 				if(dataBanco.equals(dataConsulta)) {
 					for(int i=0; i<consultaLab.consultaLaboratorio().size(); i++) {
@@ -47,10 +49,5 @@ public class ConsultarReserva {
 		}
 		
 		return encontrado;
-	}
-	
-	public static void main(String[] args) {
-		ConsultarReserva con = new ConsultarReserva();
-		System.out.println(con.consultaReserva("2019/11/24", "11236"));
 	}
 }
