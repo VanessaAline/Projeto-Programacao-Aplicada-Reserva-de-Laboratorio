@@ -37,13 +37,20 @@ public class Calendario {
 		return data;
 	}
 	
-	public String getDiaNome() {
+	public String getDiaNome(String data) {
 		/* Retorna o dia da semana por extenso, ex sabado
 		 * Converte a primeira letra para MAIUSC
 		 */
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-		String dia = sdf.format(c.getTime());
+		Calendar c2 = Calendar.getInstance();
+
+		String[] dataSeparada = data.split("/");
+		c2.set(Integer.parseInt(dataSeparada[0]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[2]));
+
+		String dia = sdf.format(c2.getTime());
 		dia = dia.substring(0,1).toUpperCase().concat(dia.substring(1));
+		
+		c2 = c;
 		
 		return dia;
 	}
@@ -172,11 +179,10 @@ public class Calendario {
 	}
 
 	public boolean enviarData(JButton botao){
-		/* Função para enviar a data e verificar se esta reservada
+		/* Funcao para enviar a data e verificar se esta reservada
 		 */
-		String newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+botao.getText();
-		
-		System.out.println(getDiaNome());
+		//String newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+botao.getText();
+		String newData = getAno()+"/"+(c.get(Calendar.MONTH))+"/"+botao.getText();
 		
 		return consultaReserva.consultaReserva(newData, new String());
 	}
