@@ -5,6 +5,9 @@ import java.sql.Statement;
 
 public class CriarTabelas {
 
+	/*
+	 * Classee para realizar os inserts iniciais
+	 */
 	private final Conexao conexaoSqlite;
 	
 	public CriarTabelas(Conexao conexao) {
