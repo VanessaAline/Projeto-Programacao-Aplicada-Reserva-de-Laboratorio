@@ -7,6 +7,9 @@ import java.sql.Statement;
 
 public class ConsultarCodigoLaboratorio {
 	
+	/*
+	 * Classe para verificar codigo de um lab
+	 */
 	public boolean consultaCodigo(String codigoConsulta) {
 		Connection c = null;
 		Statement stmt = null;
@@ -14,7 +17,7 @@ public class ConsultarCodigoLaboratorio {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db/ReservaLab.db");
+			c = DriverManager.getConnection("jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db");
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
