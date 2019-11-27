@@ -7,6 +7,9 @@ import java.sql.Statement;
 
 public class ConsultarCadastroProfessor {
 
+	/*
+	 * Classe para verificar cadastro do professor
+	 */
 	public boolean consultaProfessor(String matriculaProf, String senhaProf) {
 		Connection c = null;
 		Statement stmt = null;
@@ -14,7 +17,7 @@ public class ConsultarCadastroProfessor {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db/ReservaLab.db");
+			c = DriverManager.getConnection("jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db");
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
@@ -26,11 +29,8 @@ public class ConsultarCadastroProfessor {
 				
 				if(matricula.equals(matriculaProf) && senha.equals(senhaProf)) {
 					encontrado = true;
-					//System.out.println("MATRICULA = " + matricula);
-					//System.out.println("SENHA = " + senha);
 					break;
 				}else {
-					//System.out.println("Não foi encontrado");
 					encontrado = false;
 				}
 			}
@@ -42,10 +42,5 @@ public class ConsultarCadastroProfessor {
 		}
 		
 		return encontrado;
-	}
-	
-	public static void main(String[] args) {
-		ConsultarCadastroProfessor con = new ConsultarCadastroProfessor();
-		System.out.println(con.consultaProfessor("11033358", "46799703"));
 	}
 }
