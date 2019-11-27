@@ -12,6 +12,9 @@ import com.sun.tools.javac.Main;
 import Modelo.Laboratorio;
 
 public class InserirLaboratorio {
+	/*
+	 * Classe para inserir um lab
+	 */
 	Conexao conexao = new Conexao();
 	
 	public void cadastrarLaboratorio(Laboratorio lab){
@@ -30,12 +33,12 @@ public class InserirLaboratorio {
 			int resultado = prepared.executeUpdate();
 			
 			if(resultado == 1) {
-				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>LaboratÛrio Cadastrado</p></body></html>");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laborat√≥rio Cadastrado</p></body></html>");
 			}else {
-				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>LaboratÛrio n„o Cadastrado</p></body></html>");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laborat√≥rio n√£o Cadastrado</p></body></html>");
 			}
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>LaboratÛrio n„o Cadastradoo</p></body></html>");
+			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laborat√≥rio n√£o Cadastradoo</p></body></html>");
 		}finally {
 			if(prepared != null) {
 				try {
