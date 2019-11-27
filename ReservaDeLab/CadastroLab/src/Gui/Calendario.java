@@ -84,6 +84,22 @@ public class Calendario {
 		return data;
 	}
 	
+	public boolean verificaFDS(JButton botao){
+		/*
+		 * Funcao para verificar se o dia selecionado eh um fds
+		 */
+		boolean check = false;
+		
+		String newData = getAno()+"/"+(c.get(Calendar.MONTH))+"/"+botao.getText();
+
+		//sabado pode precisar ser "renomeado"
+		if(getDiaNome(newData).equals("Sábado") || getDiaNome(newData).equals("Domingo")){
+			check = true;
+		}
+		
+		return check;
+	}
+	
 	public void criaCalendario(JPanel panel){
 		/* Cria um calendario grafico em um JPanel passado por parametro
 		 * a principio, somente o mes de novembro
@@ -151,6 +167,7 @@ public class Calendario {
 				public void actionPerformed(ActionEvent e) {
 					btnDias[j].setBackground(new Color(218,112,214));
 					enviarData(btnDias[j]);
+					verificaFDS(btnDias[j]);
 					for(int k=0; k<btnDias.length; k++){
 						if(k != j)
 							btnDias[k].setBackground(new Color(248,248,255));
