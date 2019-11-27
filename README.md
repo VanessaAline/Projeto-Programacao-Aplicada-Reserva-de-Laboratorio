@@ -3,9 +3,9 @@
 
 <h3><b>Colaboradores</b></h3>
 
-Adriele Uchôa (GIT – https://github.com/ADRIELE-UCHOA)
-Andrey Roberto (GIT – https://github.com/andreyroberto)
-Vanessa Aline (GIT – https://github.com/VanessaAline)
+<p>Adriele Uchôa (GIT – https://github.com/ADRIELE-UCHOA)</p>
+<p>Andrey Roberto (GIT – https://github.com/andreyroberto)</p>
+<p>Vanessa Aline (GIT – https://github.com/VanessaAline)</p>
 
 <h3><b>Orientador</b></h3>
 
