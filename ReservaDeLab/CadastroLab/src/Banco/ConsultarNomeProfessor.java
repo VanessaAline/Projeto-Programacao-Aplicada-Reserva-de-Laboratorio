@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ConsultarNomeProfessor {
+	
+	/*
+	 * Classe para fazer a consulta do nome do professor no banco
+	 */
 	public String consultaNome(String matriculaProf) {
 		Connection c = null;
 		Statement stmt = null;
@@ -13,7 +17,7 @@ public class ConsultarNomeProfessor {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db/ReservaLab.db");
+			c = DriverManager.getConnection("jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db");
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
