@@ -1,25 +1,25 @@
 <h1><b>Projeto Programação Aplicada (Reserva de Laboratório)</b></h1>
 
 
-<h2><b>Colaboradores</b></h2>
+<h3><b>Colaboradores</b></h3>
 
 Adriele Uchôa (GIT – https://github.com/ADRIELE-UCHOA)
 Andrey Roberto (GIT – https://github.com/andreyroberto)
 Vanessa Aline (GIT – https://github.com/VanessaAline)
 
-<h2><b>Orientador</b></h2>
+<h3><b>Orientador</b></h3>
 
 Jamisson Freitas (GIT – https://github.com/jamissonfreitas)
 
-<h2><b>Disciplina</b></h2>
+<h3><b>Disciplina</b></h3>
 
 Programação Aplicada
 
-<h2><b>Descrição do Projeto</b></h2>
+<h3><b>Descrição do Projeto</b></h3>
 
 Uma aplicação simples feita para simular a reserva de um laboratório numa determinada data por um professor, onde existe uma tela para login e para cadastro de um professor, essa aplicação é baseada de forma visual no sistema da UNINABUCO.
 
-<h2><b>Executando a aplicação</b></h2>
+<h3><b>Executando a aplicação</b></h3>
 
 Passo1
 
@@ -34,6 +34,6 @@ Passo3
 De início, não será possível acessar o sistema, primeiro é preciso cadastrar um professor para assim poder ter acesso.
 
 
-<h2><b>Observações</b></h2>
+<h3><b>Observações</b></h3>
 
 A aplicação ainda é bem simples, no momento não é possível realizar operações mais elaboradas, como por exemplo, redefinir a senha de um usuário, ou acessar outros meses no calendário.
