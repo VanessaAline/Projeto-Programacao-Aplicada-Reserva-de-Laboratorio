@@ -3,14 +3,14 @@
 
 <h3><b>Colaboradores</b></h3>
 <p>
-Adriele Uchôa (GIT – https://github.com/ADRIELE-UCHOA)<br />
-Andrey Roberto (GIT – https://github.com/andreyroberto)<br />
-Vanessa Aline (GIT – https://github.com/VanessaAline)<br />
+Adriele Uchôa (GITHUB – https://github.com/ADRIELE-UCHOA)<br />
+Andrey Roberto (GITHUB – https://github.com/andreyroberto)<br />
+Vanessa Aline (GITHUB – https://github.com/VanessaAline)<br />
 </p>
 
 <h3><b>Orientador</b></h3>
 
-Jamisson Freitas (GIT – https://github.com/jamissonfreitas)
+Jamisson Freitas (GITHUB – https://github.com/jamissonfreitas)
 
 <h3><b>Disciplina</b></h3>
 
@@ -28,11 +28,15 @@ Antes de executar a aplicação é necessário importar o <b>sqlite-jdbc-3.20.1<
 
 Passo2
 
-Agora com o drive já adicionado, você devera acessar na ide a classe InterfaceGUI que é onde se encontra o método main do projeto, então você deverá executar e a aplicação já estará funcionando.
+Agora com o drive já adicionado, você devera acessar na ide a classe InterfaceGUI que é onde se encontra o método main do projeto, então você deverá executar a classe e a aplicação já estará funcionando.
 
 Passo3
 
 De início, não será possível acessar o sistema, primeiro é preciso cadastrar um professor para assim poder ter acesso.
+
+Passo4
+
+Após realizar os passos anteriores, já será possível logar no sistema e realizar a reserva de um laboratório.
 
 
 <h3><b>Observações</b></h3>
