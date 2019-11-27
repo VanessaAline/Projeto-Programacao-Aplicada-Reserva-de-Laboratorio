@@ -39,7 +39,7 @@ public class InserirLaboratorio {
 				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratorio nao Cadastrado</p></body></html>");
 			}
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratorio nao Cadastradoo</p></body></html>");
+			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Laboratorio nao Cadastrado</p></body></html>");
 		}finally {
 			if(prepared != null) {
 				try {
