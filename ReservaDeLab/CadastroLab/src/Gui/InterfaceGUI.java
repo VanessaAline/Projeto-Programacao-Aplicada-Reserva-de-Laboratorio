@@ -30,7 +30,7 @@ import Fachada.Fachada;
 
 public class InterfaceGUI {
 	//atributos
-	private JFrame tela = new JFrame("Reserva de Laboratórios");
+	private JFrame tela = new JFrame("Reserva de Laboratorios");
 	private JPanel panel, panelCadastro, panelAcesso;
 	private ImageIcon icon = new ImageIcon(getClass().getResource("untitled.png"));
 	private ImageIcon icon2 = new ImageIcon(getClass().getResource("Untitled.png"));
@@ -57,14 +57,14 @@ public class InterfaceGUI {
 		//criando as tabelas
 		fachada.criarTabelas();
 		
-		//Configurações da Tela
+		//Configuracoes da Tela
 		tela.setSize(1000,700);
 		tela.setVisible(true);
 		tela.setLayout(null);
 		tela.setResizable(false);
 		tela.setLocationRelativeTo(null);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//configurações Panel
+		//configuracoes Panel
 		panel = new JPanel();
 		tela.add(panel);
 		panel.setSize(1000,700);
@@ -87,7 +87,7 @@ public class InterfaceGUI {
 		lbInsta = new JLabel(iconInsta);
 		panel.add(lbInsta);
 		lbInsta.setBounds(700,580,25,25);
-		//rodape e cabeçalho
+		//rodape e cabecalho
 		lbRodape = new JLabel(); lbCabecalho = new JLabel();
 		lbRodape.setBounds(0,632,1000,40);
 		lbRodape.setBackground(new Color(255,20,147));
@@ -116,7 +116,7 @@ public class InterfaceGUI {
 		});
 		mudarMouse(Imagemfundo); //metodo para alterar o cursor
 		
-		lbNomeMatricula = new JLabel("Informe sua Matrícula");
+		lbNomeMatricula = new JLabel("Informe sua Matricula");
 		panel.add(lbNomeMatricula);
 		lbNomeMatricula.setBounds(700,250,160,30);
 		lbNomeMatricula.setFont(new Font("Verdana", 0, 14));
@@ -125,7 +125,7 @@ public class InterfaceGUI {
 		textMatricula = new JTextField(); textSenha = new JPasswordField();
 		panel.add(textMatricula); panel.add(textSenha);
 		textMatricula.setBounds(700,300,200,30);
-		textMatricula.setText("Matrícula");
+		textMatricula.setText("Matricula");
 		textMatricula.setFont(new Font("Verdana",0, 14));
 		textSenha.setBounds(700,340,200,30);
 		textSenha.setText("Senha");
@@ -135,14 +135,14 @@ public class InterfaceGUI {
 		textMatricula.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(textMatricula.getText().equals("Matrícula")){
+				if(textMatricula.getText().equals("Matricula")){
 					textMatricula.setText("");
 				}
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(textMatricula.getText().equals("")) {
-					textMatricula.setText("Matrícula");
+					textMatricula.setText("Matricula");
 				}
 			}
 		});
@@ -179,13 +179,13 @@ public class InterfaceGUI {
 				if(acesso){
 					acessoProfessor();
 				}else{
-					JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>LOGIN INVÁLIDO</p></body></html>");
+					JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>LOGIN INVALIDO</p></body></html>");
 				}
 			}
 		});
 		
 		//cadastrar
-		lbAcesso = new JLabel("Não tem acesso?");
+		lbAcesso = new JLabel("Nao tem acesso?");
 		panel.add(lbAcesso);
 		lbAcesso.setBounds(700,500,120,30);
 		lbAcesso.setFont(new Font("Verdana", 0, 14));
@@ -256,7 +256,7 @@ public class InterfaceGUI {
 				textNewNome.setBackground(new Color(248,248,255));
 				textNewNome.setBounds(100,230,500,30);
 				
-				lbMatricula = new JLabel("Informe a sua Matrícula");
+				lbMatricula = new JLabel("Informe a sua Matricula");
 				panelCadastro.add(lbMatricula);
 				lbMatricula.setFont(new Font("Verdana",0,14));
 				lbMatricula.setBounds(100,270,170,30);
@@ -299,7 +299,7 @@ public class InterfaceGUI {
 						tela.add(panel);
 						panel.add(lbLogo);
 						panel.setVisible(true);
-						textMatricula.setText("Matrícula");
+						textMatricula.setText("Matricula");
 						textSenha.setText("Senha");
 					}
 				});
@@ -316,7 +316,7 @@ public class InterfaceGUI {
 	private void acessoProfessor() {
 		/* Funcao para manipulacao da area de acesso do professor
 		 */
-		//configurações do panel
+		//configuracoes do panel
 		panelAcesso = new JPanel();
 		panel.setVisible(false);
 		tela.remove(panel);
@@ -337,7 +337,7 @@ public class InterfaceGUI {
 		panelAcesso.add(lbLogo2);
 		lbLogo2.setBounds(790,30,100,70);
 		
-		lbReserva = new JLabel("RESERVA DE LABORATÓRIO");
+		lbReserva = new JLabel("RESERVA DE LABORATORIO");
 		panelAcesso.add(lbReserva);
 		lbReserva.setFont(new Font("Verdana",1,16));
 		lbReserva.setBounds(50,50,260,30);
@@ -367,7 +367,7 @@ public class InterfaceGUI {
 				tela.add(panel);
 				panel.add(lbLogo);
 				panel.setVisible(true);
-				textMatricula.setText("Matrícula");
+				textMatricula.setText("Matricula");
 				textSenha.setText("Senha");
 			}
 		});
@@ -390,13 +390,23 @@ public class InterfaceGUI {
 		lbCampo2.setBounds(50,440,880,110);
 		
 		//info dos labs
-		lbLab1 = new JLabel("Laboratório 1"); lbLab2 = new JLabel("Laboratório 2");
+		lbLab1 = new JLabel("Laboratorio 1"); lbLab2 = new JLabel("Laboratorio 2");
 		panelAcesso.add(lbLab1); panelAcesso.add(lbLab2);
 		lbLab1.setFont(new Font("Verdana",0,14)); lbLab2.setFont(new Font("Verdana",0,14));
 		lbLab1.setBounds(60,480,100,30); lbLab2.setBounds(60,510,100,30);
 		
 		//cria o calendario grafico passando um panel por parametro
 		fachada.criaCalendario(panelAcesso);
+		
+		btnReservar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//if(fachada.verificaFDS() == false){
+					fachada.criarReserva(fachada.dataBanco(), "11236", textMatricula.getText(), true);
+					fachada.inserirReserva();
+				//}
+			}
+		});
 	}
 	
 	private void mudarMouse(final JLabel label) {
