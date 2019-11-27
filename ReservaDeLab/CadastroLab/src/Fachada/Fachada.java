@@ -14,15 +14,18 @@ import Modelo.Professor;
 
 public class Fachada {
 	
-	Professor prof;
-	Laboratorio lab;
-	InserirProfessor insert;
-	ConsultarCadastroProfessor consultaProf;
-	CriarTabelas createTable;
-	Conexao conexao;
-	Calendario calendario;
-	ConsultarNomeProfessor consultaNome;
-	ConsultarReserva consultaReserva;
+	/*
+	 * Classe que serve de fachada
+	 */
+	private Professor prof;
+	private Laboratorio lab;
+	private InserirProfessor insert;
+	private ConsultarCadastroProfessor consultaProf;
+	private CriarTabelas createTable;
+	private Conexao conexao;
+	private Calendario calendario;
+	private ConsultarNomeProfessor consultaNome;
+	private ConsultarReserva consultaReserva;
 	
 	public Fachada(){
 		prof = new Professor();
@@ -73,6 +76,10 @@ public class Fachada {
 	//Calendario
 	public boolean enviarData(String codigoLab) {
 		return consultaReserva.consultaReserva(new String(), codigoLab);
+	}
+	//calendario
+	public String diaNome(String dia) {
+		return calendario.getDiaNome();
 	}
 	
 	//ConsultarReserva
