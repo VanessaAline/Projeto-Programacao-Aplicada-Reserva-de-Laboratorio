@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import com.sun.tools.javac.Main;
 
 public class InserirProfessor {
+	/*
+	 * Classe para inserir um professor
+	 */
 	Conexao conexao = new Conexao();
 	
 	public void cadastrarProfessor(String matricula, String nome, String senha){
@@ -30,10 +33,10 @@ public class InserirProfessor {
 			if(resultado == 1) {
 				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor Cadastrado</p></body></html>");
 			}else {
-				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor n„o Cadastrado</p></body></html>");
+				JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor n√£o Cadastrado</p></body></html>");
 			}
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor n„o Cadastrado</p></body></html>");
+			JOptionPane.showMessageDialog(null, "<html><body><p width='120px' align='center'>Professor n√£o Cadastrado</p></body></html>");
 		}finally {
 			if(prepared != null) {
 				try {
