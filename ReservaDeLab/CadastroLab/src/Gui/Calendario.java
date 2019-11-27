@@ -38,7 +38,7 @@ public class Calendario {
 	}
 	
 	public String getDiaNome() {
-		/* Retorna o dia da semana por extenso, ex sÃ¡bado
+		/* Retorna o dia da semana por extenso, ex sabado
 		 * Converte a primeira letra para MAIUSC
 		 */
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -140,7 +140,7 @@ public class Calendario {
 		for(int i=0; i<btnDias.length; i++){
 			final int j =i;
 			btnDias[j].addActionListener(new ActionListener() {
-				//@Override
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					btnDias[j].setBackground(new Color(218,112,214));
 					enviarData(btnDias[j]);
@@ -175,6 +175,8 @@ public class Calendario {
 		/* Função para enviar a data e verificar se esta reservada
 		 */
 		String newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+botao.getText();
+		
+		System.out.println(getDiaNome());
 		
 		return consultaReserva.consultaReserva(newData, new String());
 	}
