@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public class GerarArrayListCodigoLab {
 	
+	/*
+	 * Gera um ArrayList com os codigos dos labs
+	 */
 	public ArrayList<String> consultaLaboratorio() {
 		Connection c = null;
 		Statement stmt = null;
@@ -15,7 +18,7 @@ public class GerarArrayListCodigoLab {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db/ReservaLab.db");
+			c = DriverManager.getConnection("jdbc:sqlite:ReservaDeLab/CadastroLab/db/ReservaLab.db");
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
