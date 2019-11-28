@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 import java.text.ParseException;
+
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
@@ -283,7 +286,7 @@ public class InterfaceGUI {
 				btnCadastrar.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						//onde é realizado o cadastro de um professor
+						//onde Ã© realizado o cadastro de um professor
 						//verifica se os campos nao sao nulos
 						if(textNewMatricula.getText()!=null && textNewNome.getText()!=null && textNewSenha.getText()!=null) {
 							fachada.cadastrarProf(textNewMatricula.getText(), textNewNome.getText(), textNewSenha.getText());
@@ -309,9 +312,11 @@ public class InterfaceGUI {
 	}
 	
 	//atributos do Painel de Acesso
-	JButton btnReservar = new JButton();
-	JLabel lbNomeProfessor, lbCampo1, lbCampo2, lbMatriculaProfessor, lbLogOut, 
-	lbLogo2, lbReserva, lbLab1, lbLab2, lbDia;
+	private JButton btnReservar = new JButton();
+	private JLabel lbNomeProfessor, lbCampo1, lbCampo2, lbMatriculaProfessor, lbLogOut, 
+	lbLogo2, lbReserva, lbLab1, lbLab2;
+	private JRadioButton rbLaboratorio1, rbLaboratorio2;
+	private ButtonGroup btGrupo = new ButtonGroup();
 
 	private void acessoProfessor() {
 		/* Funcao para manipulacao da area de acesso do professor
@@ -398,12 +403,31 @@ public class InterfaceGUI {
 		//cria o calendario grafico passando um panel por parametro
 		fachada.criaCalendario(panelAcesso);
 		
+		rbLaboratorio1 = new JRadioButton("Laboratorio 1", false);
+		rbLaboratorio2 = new JRadioButton("Laboratorio 2", false);
+		btGrupo.add(rbLaboratorio1);
+		btGrupo.add(rbLaboratorio2);
+		panelAcesso.add(rbLaboratorio1); panelAcesso.add(rbLaboratorio2);
+		rbLaboratorio1.setBackground(Color.WHITE);
+		rbLaboratorio2.setBackground(Color.WHITE);
+		rbLaboratorio1.setBounds(500, 300, 150, 30);
+		rbLaboratorio2.setBounds(500, 340, 150, 30);
+		rbLaboratorio1.setFont(new Font("Verdana",0,14));
+		rbLaboratorio2.setFont(new Font("Verdana",0,14));
+		
 		btnReservar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//if(fachada.verificaFDS() == false){
-					fachada.criarReserva(fachada.dataBanco(), "11236", textMatricula.getText(), true);
-					fachada.inserirReserva();
+				//if(!fachada.verificaFDS()){
+					if(rbLaboratorio1.isSelected()) {
+						fachada.criarReserva(fachada.dataBanco(), "11236", textMatricula.getText(), true);
+						fachada.inserirReserva();
+					}else if(rbLaboratorio2.isSelected()) {
+						fachada.criarReserva(fachada.dataBanco(), "26841", textMatricula.getText(), true);
+						fachada.inserirReserva();
+					}else {
+						JOptionPane.showMessageDialog(null, "Selecione um Laboratorio");
+					}
 				//}
 			}
 		});
