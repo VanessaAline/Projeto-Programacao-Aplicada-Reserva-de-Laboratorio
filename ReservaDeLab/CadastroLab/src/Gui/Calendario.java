@@ -24,6 +24,7 @@ public class Calendario {
 	private Calendar c = Calendar.getInstance();
 	private ConsultarReserva consultaReserva = new ConsultarReserva();
 	private JPanel panelCalendario, panelSemana, panelMes;
+	private String newData;
 	
 	//construtor
 	public Calendario() {}
@@ -78,10 +79,8 @@ public class Calendario {
 	public String enviaDataBanco() {
 		/* Funcao para enviar a data no formato yyyy/MM/dd para o banco
 		 */
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String data = sdf.format(c.getTime());
 		
-		return data;
+		return newData;
 	}
 	
 	public boolean verificaFDS(JButton botao){
@@ -93,8 +92,10 @@ public class Calendario {
 		String newData = getAno()+"/"+(c.get(Calendar.MONTH))+"/"+botao.getText();
 
 		//sabado pode precisar ser "renomeado"
-		if(getDiaNome(newData).equals("Sábado") || getDiaNome(newData).equals("Domingo")){
-			check = true;
+		if(botao.getText() != null) {
+			if(getDiaNome(newData).equals("Sábado") || getDiaNome(newData).equals("Domingo")){
+				check = true;
+			}
 		}
 		
 		return check;
@@ -168,6 +169,8 @@ public class Calendario {
 					btnDias[j].setBackground(new Color(218,112,214));
 					enviarData(btnDias[j]);
 					verificaFDS(btnDias[j]);
+					newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+btnDias[j].getText();
+					
 					for(int k=0; k<btnDias.length; k++){
 						if(k != j)
 							btnDias[k].setBackground(new Color(248,248,255));
@@ -199,7 +202,7 @@ public class Calendario {
 		/* Funcao para enviar a data e verificar se esta reservada
 		 */
 		//String newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+botao.getText();
-		String newData = getAno()+"/"+(c.get(Calendar.MONTH))+"/"+botao.getText();
+		String newData = getAno()+"/"+(c.get(Calendar.MONTH)+1)+"/"+botao.getText();
 		
 		return consultaReserva.consultaReserva(newData, new String());
 	}
