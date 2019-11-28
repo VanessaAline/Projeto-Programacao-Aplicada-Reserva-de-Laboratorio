@@ -101,8 +101,6 @@ public class Fachada {
 		reservadoClasse.setCodigo_lab(codigo_lab);
 		reservadoClasse.setMatricula_prof(matricula_prof);
 		reservadoClasse.setReservado(reservado);
-		
-		System.out.println(reservadoClasse.getData() + " "+ reservadoClasse.getCodigo_lab() + " "+ reservadoClasse.getMatricula_prof()+" "+reservadoClasse.getReservado());
 	}
 	//InserirReserva
 	public void inserirReserva(){
